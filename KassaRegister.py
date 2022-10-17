@@ -1,16 +1,13 @@
-from math import prod
-from product import Product
+from produkt import Product, ReadProductFromFile
 from receipt import Receipt, ReceiptRow 
 
-allProducts = []
-with open("products.txt") as file:
-    for line in file:
-        parts = line.split(";")
-        product = Product(parts[1],float(parts[2]), parts[0])
-        allProducts.append(product)
 
-print(allProducts[0].GetName())
 
+
+
+
+# for vara in ReadProductFromFile():
+#     print(vara.GetName())
 
 def HuvudMeny() -> int:
     print("1. Ny kund")
