@@ -24,5 +24,5 @@ def ReadProductFromFile(): #Den hör inte till klassen men är relevant
             vara = line.split(";")
             product = Product(vara[0],(vara[1]), float(vara[2]), vara[3])
             allProducts.append(product)
-            print(line)
+            #print(line)
         return allProducts
