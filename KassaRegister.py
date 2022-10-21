@@ -1,9 +1,6 @@
 from produkt import Product, ReadProductFromFile
 from receipt import Receipt, ReceiptRow 
-
-
-
-
+from datetime import date, datetime
 
 
 # for vara in ReadProductFromFile():
@@ -17,26 +14,47 @@ def HuvudMeny() -> int:
 
 def NyttKvitto(allProducts):
     kvitto = Receipt()
-    kvitto.Add("Bananer", 3, 12.50)
-    kvitto.Add("Äpple", 2, 10.50)
-    print(kvitto.GetTotal())
-
+    
+    Kund = [] 
     while True:
         print("KASSA")
-        datum = "2002-10-05 13:45:12"
-        print(f"KVITTO:{datum}")
+        now = datetime.now()
+        now = now.strftime("%d/%m/%Y %H:%M:%S")
+        print(f"KVITTO:{now}")
         print("kommandon:")
+
         print("<productid> <antal>")
         print("PAY")
         action = input("Kommando:")
         if action  == "PAY":
             break
+        
+           
+        Nuvarande = action.split(" ")
+        produktid = Nuvarande[0]
+        antal = int(Nuvarande[1])
+       
+        Produkt = GetProdukt(allProducts, produktid)
+        #print(Produkt.GetName())
+        Kund.append(Produkt)
+        kvitto.Add(Produkt.GetName(),antal,Produkt.GetPrice())
+        for x in Kund:
+            print(f"{x.GetName()} * {antal} = {antal*x.GetPrice()}")
+        print(f"Total: {kvitto.GetTotal()}")            
+        
+   
+        
+def GetProdukt(Produkter, productid):         
+    for x in Produkter:
+        if x.GetProductId() == productid:
+            return x         
+        
 
+allProducts = ReadProductFromFile()
 while True:
     sel = HuvudMeny()
-    if sel == 2:
-        break
-    elif sel == 1:
+    if sel == 1:
         NyttKvitto(allProducts)
-
+    elif sel == 2:
+        break
 
