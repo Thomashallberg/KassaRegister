@@ -27,6 +27,7 @@ def NyttKvitto(allProducts):
         print("PAY")
         action = input("Kommando:")
         if action  == "PAY":
+            kvitto.SaveToFile()
             break
         
            

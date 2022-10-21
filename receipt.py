@@ -12,6 +12,15 @@ class ReceiptRow:
 
     def GetTotal(self):
         return self.__Count * self.__PerPrice
+    
+    def GetName(self):
+        return self.__ProductName
+    
+    def GetCount(self):
+        return self.__Count
+    
+    def GetPrice(self):
+        return self.__PerPrice
 
 class Receipt:
     def __init__(self):
@@ -29,5 +38,16 @@ class Receipt:
         # ja -> uppdatera count 
         receiptRow = ReceiptRow(productName,count,perPrice)
         self.__ReceiptRows.append(receiptRow)
-
+        
+    def SaveToFile(self):
+        #Loopa igenom listan av items i "kvittot",
+        # skriv in varje element(namn, antal, pris, total och datetime)
+        datum = f"RECEIPT_{self.__Datum.strftime('%Y%m%d')}.txt"
+        with open(datum, "a") as file:
+            file.write(f"{self.__Datum.strftime('%d/%m/%Y %H:%M:%S')}\n")
+            for row in self.__ReceiptRows:
+                file.write(f"{row.GetName()} {row.GetCount()} {row.GetPrice()} {row.GetTotal()}\n")
+            file.write(f"{self.GetTotal()}")
+            file.write("\n-----------------\n")
+        
     
