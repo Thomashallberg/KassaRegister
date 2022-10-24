@@ -33,30 +33,22 @@ class Receipt:
             sum = sum + row.GetTotal()
         return sum
 
-    def CheckIfExist(self, productName):
+    def __CheckIfExist(self, productName):
         for row in self.__ReceiptRows:
             if row.GetName() == productName:
                 return True
     
     def Add(self, productName:str, count:int, perPrice:float):   
-        # Finns redan en receiptrow med denna productName?
-        #  loopa igenom self.__ReceiptRows och försöka hitta
-        # rec.AddCount(count)
-        # ja -> uppdatera count 
-
-        if self.CheckIfExist(productName):
-             
+        
+        if self.__CheckIfExist(productName):             
+            
             for row in self.__ReceiptRows:
                 if row.GetName() == productName:
                     row.AddCount(count)
         else:
-            #append new item to list
-          
-            
             receiptRow = ReceiptRow(productName,count,perPrice)
             self.__ReceiptRows.append(receiptRow)
             
-        
     def SaveToFile(self):
         #Loopa igenom listan av items i "kvittot",
         # skriv in varje element(namn, antal, pris, total och datetime)
