@@ -1,4 +1,4 @@
-300;Bananer;4.50;PerKilo
+300;Bananer;4.50;PerStyck
 400;Kaffe;12.50;PerStyck
 100;Penna;120;PerStyck
 200;Boll;50;PerStyck
