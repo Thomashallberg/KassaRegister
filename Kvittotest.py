@@ -5,6 +5,8 @@ kvitto = Receipt()
 kvitto.Add("banan", 3, 12.50)
 kvitto.Add("Penna", 5, 5000)
 kvitto.Add("Iphone", 1, 14000)
+kvitto.Add("banan", 2, 12.50)
+kvitto.Add("banan", 4, 12.50)
 kvitto.SaveToFile()
 
 kvitto2 = Receipt()
